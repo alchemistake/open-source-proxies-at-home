@@ -20,17 +20,17 @@ type Props = {
   cards: CardOption[]; // Passed from parent to avoid redundant DB query
 };
 
-type ExportMode = 'fronts' | 'interleaved-all' | 'interleaved-custom' | 'duplex' | 'backs' | 'visible_faces';
+type ExportMode = 'visible_faces';
 type CopyMode = 'standard' | 'withMpc';
 type DownloadMode = 'standard' | 'withMpc' | 'xml';
 type ImageExportMode = 'zip' | 'individual';
 
 const EXPORT_MODES: { value: ExportMode; label: string; description: string }[] = [
-  { value: 'fronts', label: 'Fronts Only', description: 'Print front faces only (most common)' },
-  { value: 'interleaved-all', label: 'Interleaved (All)', description: 'Each front followed by its back' },
-  { value: 'interleaved-custom', label: 'Interleaved (DFC/Custom)', description: 'Interleave only DFCs and custom backs' },
-  { value: 'duplex', label: 'Duplex Printing', description: 'All fronts, then all backs (mirrored)' },
-  { value: 'backs', label: 'Backs Only', description: 'Just backs (mirrored for duplex)' },
+  // { value: 'fronts', label: 'Fronts Only', description: 'Print front faces only (most common)' },
+  // { value: 'interleaved-all', label: 'Interleaved (All)', description: 'Each front followed by its back' },
+  // { value: 'interleaved-custom', label: 'Interleaved (DFC/Custom)', description: 'Interleave only DFCs and custom backs' },
+  // { value: 'duplex', label: 'Duplex Printing', description: 'All fronts, then all backs (mirrored)' },
+  // { value: 'backs', label: 'Backs Only', description: 'Just backs (mirrored for duplex)' },
   { value: 'visible_faces', label: 'Visible Faces', description: 'Prints whichever face is currently visible (follows flips)' },
 ];
 
@@ -512,58 +512,6 @@ export function ExportActions({ cards }: Props) {
         onSelect={setExportMode}
         icon={FileText}
       />
-
-      {/* Split button for image export */}
-      <SplitButton
-        label="Export Card Images"
-        sublabel={IMAGE_EXPORT_MODES.find(m => m.value === imageExportMode)?.label}
-        color="indigo"
-        disabled={!frontCards.length}
-        onClick={handleImageExport}
-        isOpen={isImageExportDropdownOpen}
-        onToggle={() => setIsImageExportDropdownOpen(!isImageExportDropdownOpen)}
-        onClose={() => setIsImageExportDropdownOpen(false)}
-        options={IMAGE_EXPORT_MODES}
-        value={imageExportMode}
-        onSelect={setImageExportMode}
-        labelSize="sm"
-        icon={Image}
-      />
-
-      {/* Copy Decklist Split Button */}
-      <SplitButton
-        label="Copy Decklist"
-        sublabel={COPY_MODES.find(m => m.value === copyMode)?.label}
-        color="cyan"
-        disabled={!frontCards.length}
-        onClick={handleCopyDecklist}
-        isOpen={isCopyDropdownOpen}
-        onToggle={() => setIsCopyDropdownOpen(!isCopyDropdownOpen)}
-        onClose={() => setIsCopyDropdownOpen(false)}
-        options={COPY_MODES}
-        value={copyMode}
-        onSelect={setCopyMode}
-        labelSize="sm"
-        icon={Clipboard}
-      />
-
-      {/* Download Decklist Split Button */}
-      <SplitButton
-        label="Download Decklist"
-        sublabel={DOWNLOAD_MODES.find(m => m.value === downloadMode)?.label}
-        color="blue"
-        disabled={!frontCards.length}
-        onClick={handleDownloadDecklist}
-        isOpen={isDownloadDropdownOpen}
-        onToggle={() => setIsDownloadDropdownOpen(!isDownloadDropdownOpen)}
-        onClose={() => setIsDownloadDropdownOpen(false)}
-        options={DOWNLOAD_MODES}
-        value={downloadMode}
-        onSelect={setDownloadMode}
-        labelSize="sm"
-        icon={Download}
-      />
-
 
       {showErrorModal && errorMessage && createPortal(
         <div className="fixed inset-0 z-100 bg-gray-900/50 flex items-center justify-center">

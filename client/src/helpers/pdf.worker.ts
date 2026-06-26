@@ -404,7 +404,7 @@ function createGuideCanvas(
     dpi: number,
     style: GuideStyle = 'corners',
     placement: 'inside' | 'outside' | 'center' = 'outside',
-    cutGuideLengthMm: number = 6.25
+    cutGuideLengthMm: number = 2.00
 ): OffscreenCanvas | null {
     if (style === 'none' || guideWidthPx <= 0) return null;
 
@@ -544,7 +544,7 @@ self.onmessage = async (event: MessageEvent) => {
         const perCardGuideCanvas = createGuideCanvas(
             contentWidthInPx, contentHeightInPx, bleedPxForGuide,
             guideColor, scaledGuideWidth, DPI, perCardGuideStyle ?? 'corners',
-            guidePlacement ?? 'outside', cutGuideLengthMm ?? 6.25
+            guidePlacement ?? 'outside', cutGuideLengthMm ?? 2.00
         );
 
         // Create and draw full page guides (behind cards)

@@ -180,20 +180,20 @@ export function PageSettingsControls({
     const onToggle = () => togglePanelCollapse(id);
 
     switch (id) {
-      case "projects":
-        return (
-          <SettingsPanel
-            key={id}
-            id={id}
-            title="Projects"
-            isOpen={isOpen}
-            onToggle={onToggle}
-            icon={Folder}
-            mobile={mobile}
-          >
-            <ProjectsSection />
-          </SettingsPanel>
-        );
+      // case "projects":
+      //   return (
+      //     <SettingsPanel
+      //       key={id}
+      //       id={id}
+      //       title="Projects"
+      //       isOpen={isOpen}
+      //       onToggle={onToggle}
+      //       icon={Folder}
+      //       mobile={mobile}
+      //     >
+      //       <ProjectsSection />
+      //     </SettingsPanel>
+      //   );
       case "layout":
         return (
           <SettingsPanel
@@ -250,20 +250,20 @@ export function PageSettingsControls({
             <GuidesSection />
           </SettingsPanel>
         );
-      case "card":
-        return (
-          <SettingsPanel
-            key={id}
-            id={id}
-            title="Card"
-            isOpen={isOpen}
-            onToggle={onToggle}
-            icon={Grid3X3}
-            mobile={mobile}
-          >
-            <CardSection />
-          </SettingsPanel>
-        );
+      // case "card":
+      //   return (
+      //     <SettingsPanel
+      //       key={id}
+      //       id={id}
+      //       title="Card"
+      //       isOpen={isOpen}
+      //       onToggle={onToggle}
+      //       icon={Grid3X3}
+      //       mobile={mobile}
+      //     >
+      //       <CardSection />
+      //     </SettingsPanel>
+      //   );
       case "filterSort":
         return (
           <SettingsPanel

@@ -218,8 +218,6 @@ function getPageSizeName(widthMm: number, heightMm: number): string {
     const tolerance = 1;
 
     const sizes: Array<{ name: string; w: number; h: number }> = [
-        { name: 'letter', w: 215.9, h: 279.4 },
-        { name: 'letter_landscape', w: 279.4, h: 215.9 },
         { name: 'a4', w: 210, h: 297 },
         { name: 'a4_landscape', w: 297, h: 210 },
         { name: 'tabloid', w: 279.4, h: 431.8 },

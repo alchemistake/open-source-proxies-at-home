@@ -5,7 +5,7 @@ import { CONSTANTS } from "@/constants/commonConstants";
 import { DarkenMode } from '../../../shared/types';
 import { ImageSource } from '../db';
 
-export type LayoutPreset = "A4" | "A3" | "Letter" | "Tabloid" | "Legal" | "ArchA" | "ArchB" | "SuperB" | "A2" | "A1" | "Custom";
+export type LayoutPreset = "A4" | "A3" | "Custom";
 export type PageOrientation = "portrait" | "landscape";
 
 export type Store = {
@@ -148,14 +148,14 @@ export type Store = {
 };
 
 const defaultPageSettings = {
-  pageSizeUnit: "in" as "in" | "mm",
+  pageSizeUnit: "mm" as "in" | "mm",
   pageOrientation: "portrait" as "portrait" | "landscape",
-  pageSizePreset: "Letter" as LayoutPreset,
-  pageWidth: 8.5,
-  pageHeight: 11,
-  customPageWidth: 8.5,
-  customPageHeight: 11,
-  customPageUnit: "in" as "in" | "mm",
+  pageSizePreset: "A4" as LayoutPreset,
+  pageWidth: 210,
+  pageHeight: 297,
+  customPageWidth: 210,
+  customPageHeight: 297,
+  customPageUnit: "mm" as "in" | "mm",
   columns: 3,
   rows: 3,
   bleedEdgeWidth: 1,
@@ -180,7 +180,7 @@ const defaultPageSettings = {
   darkenApplyToScryfall: true,
   darkenApplyToMpc: false,
   darkenApplyToUploads: false,
-  guideColor: "#39FF14",
+  guideColor: "#00ffff",
   guideWidth: 1,
   cardSpacingMm: 0,
   cardPositionX: 0,
@@ -194,7 +194,7 @@ const defaultPageSettings = {
   cutLineStyle: "full" as "full" | "edges" | "none",
   perCardGuideStyle: "corners" as "corners" | "rounded-corners" | "solid-rounded-rect" | "dashed-rounded-rect" | "solid-squared-rect" | "dashed-squared-rect" | "none",
   guidePlacement: "outside" as "inside" | "outside",
-  cutGuideLengthMm: 6.25,
+  cutGuideLengthMm: 2.00,
   registrationMarks: 'none' as 'none' | '3' | '4',
   registrationMarksPortrait: false,
   globalLanguage: "en",
@@ -216,24 +216,22 @@ const defaultPageSettings = {
   autoImportTokens: false,
   mpcFuzzySearch: true, // Default to fuzzy search enabled
   // Preferred art source
-  preferredArtSource: ImageSource.Scryfall,
+  preferredArtSource: ImageSource.MPC,
 };
 
 const layoutPresetsSizes: Record<
   LayoutPreset,
   { pageWidth: number; pageHeight: number; pageSizeUnit: "in" | "mm" }
 > = {
-  Letter: { pageWidth: 8.5, pageHeight: 11, pageSizeUnit: "in" },
   Tabloid: { pageWidth: 11, pageHeight: 17, pageSizeUnit: "in" },
   A4: { pageWidth: 210, pageHeight: 297, pageSizeUnit: "mm" },
   A3: { pageWidth: 297, pageHeight: 420, pageSizeUnit: "mm" },
-  Legal: { pageWidth: 8.5, pageHeight: 14, pageSizeUnit: "in" },
   ArchA: { pageWidth: 9, pageHeight: 12, pageSizeUnit: "in" },
   ArchB: { pageWidth: 12, pageHeight: 18, pageSizeUnit: "in" },
   SuperB: { pageWidth: 13, pageHeight: 19, pageSizeUnit: "in" },
   A2: { pageWidth: 420, pageHeight: 594, pageSizeUnit: "mm" },
   A1: { pageWidth: 594, pageHeight: 841, pageSizeUnit: "mm" },
-  Custom: { pageWidth: 8.5, pageHeight: 11, pageSizeUnit: "in" },
+  Custom: { pageWidth: 210, pageHeight: 297, pageSizeUnit: "mm" },
 };
 
 export const useSettingsStore = create<Store>()((set) => ({
@@ -542,7 +540,7 @@ export const useSettingsStore = create<Store>()((set) => ({
   mpcFuzzySearch: true,
   setMpcFuzzySearch: (enabled) => set({ mpcFuzzySearch: enabled }),
   // Preferred art source
-  preferredArtSource: 'scryfall',
+  preferredArtSource: 'mpc',
   setPreferredArtSource: (value) => set({ preferredArtSource: value }),
   // Card Editor section state
 

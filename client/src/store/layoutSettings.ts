@@ -37,18 +37,3 @@ export const LAYOUT_FIELDS = [
 ] as const;
 
 export type LayoutField = typeof LAYOUT_FIELDS[number];
-
-// Placeholder for future slice implementation
-// The actual implementation would be:
-//
-// export const useLayoutSettingsStore = create<LayoutStore>()(
-//   persist(
-//     (set) => ({
-//       pageSizeUnit: 'in',
-//       pageOrientation: 'portrait',
-//       pageSizePreset: 'Letter',
-//       // ... other layout fields
-//     }),
-//     { name: 'proxxied:layout-settings:v1' }
-//   )
-// );

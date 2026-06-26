@@ -76,9 +76,9 @@ export function ExportSection({ cards }: Props) {
     const availableDpiOptions = useMemo(() => {
         const maxDpi = isSafariLimited ? Math.min(maxSafeDpiForPage, 600) : maxSafeDpiForPage;
         const options: { label: string; value: number }[] = [];
-        for (let i = 300; i <= maxDpi; i += 300) {
-            options.push({ label: `${i}`, value: i });
-        }
+        // for (let i = 300; i <= maxDpi; i += 300) {
+        //     options.push({ label: `${i}`, value: i });
+        // }
 
         if (maxDpi % 300 !== 0) {
             options.push({

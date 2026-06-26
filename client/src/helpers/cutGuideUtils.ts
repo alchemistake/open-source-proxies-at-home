@@ -692,21 +692,23 @@ export function generatePerCardGuide(
                 const y = offset;
                 const w = contentW - 2 * offset;
                 const h = contentH - 2 * offset;
+                const overwide = 5;
 
                 commands.push({ type: 'moveTo', x: x + totalExtend, y });
-                commands.push({ type: 'lineTo', x, y });
+                commands.push({ type: 'lineTo', x: x - overwide, y });
+                commands.push({ type: 'moveTo', x, y: y - overwide });
                 commands.push({ type: 'lineTo', x, y: y + totalExtend });
 
                 commands.push({ type: 'moveTo', x: x + w - totalExtend, y });
-                commands.push({ type: 'lineTo', x: x + w, y });
-                commands.push({ type: 'lineTo', x: x + w, y: y + totalExtend });
+                commands.push({ type: 'lineTo', x: x + w + overwide, y });
+                // commands.push({ type: 'lineTo', x: x + w, y: y + totalExtend });
 
-                commands.push({ type: 'moveTo', x: x + w, y: y + h - totalExtend });
-                commands.push({ type: 'lineTo', x: x + w, y: y + h });
-                commands.push({ type: 'lineTo', x: x + w - totalExtend, y: y + h });
+                // commands.push({ type: 'moveTo', x: x + w, y: y + h - totalExtend });
+                // commands.push({ type: 'lineTo', x: x + w, y: y + h });
+                // commands.push({ type: 'lineTo', x: x + w - totalExtend, y: y + h });
 
-                commands.push({ type: 'moveTo', x: x + totalExtend, y: y + h });
-                commands.push({ type: 'lineTo', x, y: y + h });
+                // commands.push({ type: 'moveTo', x: x + totalExtend, y: y + h });
+                commands.push({ type: 'moveTo', x, y: y + h + overwide });
                 commands.push({ type: 'lineTo', x, y: y + h - totalExtend });
             }
         }
